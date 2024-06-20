@@ -1,18 +1,21 @@
 const Product = require('../models/Product');
 const fs = require('fs');
 
-//Initialise la note moyenne du livre à 0 et le rating avec un tableau vide
+
 //redimentionnement des fichiers
 exports.createProduct = (req, res, next) => {
+  /*
   const productObject = JSON.parse(req.body.product);
   //delete productObject._userId;
+  //const imageUrls = productObject.file.map(file => `${req.protocol}://${req.get('host')}/images/${file.filename}`);
+  
   const product = new Product({
       ...productObject,
-      id: productObject._id,
-      imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+      //imageUrl: imageUrls
   });
-  
-  product.save()
+ 
+  product.save()*/
+  console.log("post")
   .then(() => { res.status(201).json({message: 'Objet enregistré !'})})
   .catch(error => { res.status(400).json( { error })})
 };

@@ -1,12 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const productRoutes = require('./routes/product');
-//const userRoutes = require('./routes/user');
+const userRoutes = require('./routes/user');
 const path = require('path');
+require('dotenv').config(); 
 
 const app = express();
 
-mongoose.connect('mongodb+srv://esther57-web:kapucine9@estherscloset.tuj3dcl.mongodb.net/?retryWrites=true&w=majority&appName=Estherscloset')
+mongoose.connect(`mongodb+srv://esther57-web:${process.env.MONGO_PASSWORD}@estherscloset.tuj3dcl.mongodb.net/?retryWrites=true&w=majority&appName=Estherscloset`)
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
@@ -20,7 +21,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/products', productRoutes);
-//app.use('/api/auth', userRoutes);
+app.use('/api/auth', userRoutes);
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 module.exports = app;
